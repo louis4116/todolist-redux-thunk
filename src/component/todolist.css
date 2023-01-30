@@ -1,0 +1,30 @@
+.todolist-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: black;
+    color: white;
+    width: 40vw;
+    height: 8vh;
+    border-radius: 50px;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+.todolist-date{
+    font-size: 1.3rem;
+}
+.todolist-input{
+    font-size: 1.5rem;
+    width: 28vw; 
+    margin-left: 1rem;
+}
+.todolist-button{
+    cursor: pointer;
+    font-weight:700 ;
+    font-size: 1rem;
+    background-color: red;
+    width: 4rem;
+    padding: 5px 5px;
+    border-radius: 12px; 
+}
