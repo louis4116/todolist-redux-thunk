@@ -2,18 +2,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 
-const localId=localStorage.getItem("localId")||"";
-const token=localStorage.getItem("token")||"";
-const loading=localStorage.getItem("token")!==null ? true:false;
-const expiresin=localStorage.getItem("expiresin")||"";
+const localId=localStorage.getItem("localId")||"";//辨識登入帳號
+
+const loading=localStorage.getItem("localId")!==null ? true:false;
+
+
 const initialState =
     {
-        loading:loading,
-        token:token,
-        localId:localId,
-       expiresin:expiresin,
-       loginError:"",
-       signupError:"",
+        loading:loading,//儲存登入狀態
+        localId:localId,//辨識特定帳戶
+       loginError:"",//登入錯誤訊息
+       signupError:"",//註冊錯誤訊息
     };
 export  const signupData=createAsyncThunk("auth/singup",async({email,password})=>{
     
@@ -23,7 +22,7 @@ export  const signupData=createAsyncThunk("auth/singup",async({email,password})=
         body:JSON.stringify({
             email:email,
             password:password,
-            returnSecureToken: true
+            returnSecureToken: true//返回令牌並須為true
         }),
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +46,7 @@ export const loginData=createAsyncThunk("auth/login",async({email,password})=>{
             body:JSON.stringify({
                 email:email,
                 password:password,
-                returnSecureToken: true
+                returnSecureToken: true//返回令牌並須為true
             }),
             headers:{
                 "Content-Type":"application/json",
@@ -96,13 +95,9 @@ const authSlice=createSlice({
         [loginData.fulfilled]:(state,action)=>{
             const login=action.payload
             console.log(action.payload);
-            state.loading=true;
-            state.token=login.idToken;
-            state.localId=login.localId
-            state.expiresin=login.expiresIn;
+            state.loading=true;//儲存到initialState
+            state.localId=login.localId//儲存到initialState
             localStorage.setItem("localId",login.localId);
-            localStorage.setItem("token",login.idToken);
-            localStorage.setItem("expiresin",login.expiresIn);
         },
         [loginData.rejected]:(state,action)=>{
             state.loginError=action.error.message;

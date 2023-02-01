@@ -10,7 +10,7 @@ const Signup = (props) => {
         e.preventDefault();
         const enteredAccount =accountRef.current.value;
         const enteredPassword = passwordRef.current.value;
-        dispatch( signupData({email:enteredAccount,password:enteredPassword}));
+        dispatch( signupData({email:enteredAccount,password:enteredPassword}));//把創建好的帳號和密碼傳入至auth-slice
         props.change("login")
       }
   return (

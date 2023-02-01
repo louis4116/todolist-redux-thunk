@@ -10,7 +10,7 @@ const Login = (props) => {
     e.preventDefault();
     const enteredLogin=loginEmailRef.current.value;
     const enteredPassword=loginPasswordRef.current.value;
-    dispatch(loginData({email:enteredLogin,password:enteredPassword}));
+    dispatch(loginData({email:enteredLogin,password:enteredPassword}));//把要登入的資訊傳入auth-slice
   };
   
   return (

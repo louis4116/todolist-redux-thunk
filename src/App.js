@@ -5,6 +5,7 @@ import Signup from './component/signup';
 import Todo from './component/Todo';
 import './App.css';
 import { authAction } from './store/auth-slice';
+import { todoAction } from './store/todo-slice';
 
 function App() {
   const [change,setChange]=useState("login");
@@ -12,6 +13,7 @@ function App() {
   const loading=useSelector((state)=> state.auth.loading);
   const time=useSelector((state)=>state.auth.expiresin);
   const logoutHandler=()=>{
+    dispatch(todoAction.removeTodo());
     dispatch(authAction.removeToken());
     setChange("login")
   };
